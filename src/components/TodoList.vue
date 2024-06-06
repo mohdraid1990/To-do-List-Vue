@@ -95,6 +95,8 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
 
   input {
     flex: 1;
@@ -121,7 +123,6 @@ body {
 
   .clear-all-btn {
     background-color: $danger-color;
-    margin-left: 10px;
 
     &:hover {
       background-color: darken($danger-color, 10%);
@@ -143,6 +144,8 @@ body {
     border-radius: $border-radius;
     margin-bottom: 10px;
     transition: background-color 0.3s;
+    flex-wrap: wrap;
+    gap: 20px;
 
     &.completed {
       span {
@@ -279,8 +282,8 @@ const fetchLocation = () => {
         )
           .then((response) => response.json())
           .then((data) => {
-            city.value = data.city;
-            country.value = data.countryName;
+            city.value = data.city.replace("the ", "");
+            country.value = data.countryName.replace("the ", "");
           })
           .catch((error) => {
             console.error("Error fetching location:", error);
